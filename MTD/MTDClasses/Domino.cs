@@ -9,32 +9,74 @@ namespace MTDClasses
     [Serializable()]
     public class Domino
     {
+        // instance variables
+        private int side1;
+        private int side2;
 
+        // Default constructor, creates blank (0,0) domino
         public Domino()
         {
+            side1 = 0;
+            side2 = 0;
         }
-
+        // Overloaded constructor
         public Domino(int p1, int p2)
         {
+            side1 = p1;
+            side2 = p2;
         }
 
         // don't use an auto implemented property because of the validation in the setter - p 390
         public int Side1
         {
+            get
+            {
+                return side1;
+            }
+            set
+            {
+                if (value >= 0 && value <= 12)
+                    side1 = value;
+                else
+                    throw new ArgumentException("Domino number of dots must be between 0 and 12.");
+            }
         }
-
 
         public int Side2
         {
+            get
+            {
+                return side2;
+            }
+            set
+            {
+                if (value >= 0 && value <= 12)
+                    side2 = value;
+                else
+                    throw new ArgumentException("Domino number of dots must be between 0 and 12.");
+            }
         }
-
+        // Method to swap sides
         public void Flip()
         {
+            // variables to hold value of each side
+            side1 = this.Side1;
+            side2 = this.Side2;
+
+            // assign side2 to Side1 property
+            // addign side1 to Side2 property
+            this.Side1 = side2;
+            this.Side2 = side1;
         }
 
-        /// This is how I would have done this in 233N
+        // This is how I would have done this in 233N
+        // Get only property
         public int Score
         {
+            get
+            {
+                return side1 + side2;
+            }
         }
 
         // because it's a read only property, I can use the "expression bodied syntax" or a lamdba expression - p 393
@@ -43,6 +85,10 @@ namespace MTDClasses
         //ditto for the first version of this method and the next one
         public bool IsDouble()
         {
+            if (side1 == side2)
+                return true;
+            else
+                return false;
         }
 
         // could you do this one using a lambda expression?
@@ -64,6 +110,16 @@ namespace MTDClasses
         // could you overload the == and != operators?
         public override bool Equals(object obj)
         {
+            if (obj == null)
+                return false;
+            else
+            {
+                Domino domi = (Domino)obj;
+                if (domi.Side1 == this.Side1 && domi.Side2 == this.Side2)
+                    return true;
+                else
+                    return false;
+            }      
         }
 
         public override int GetHashCode()
