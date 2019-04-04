@@ -63,10 +63,12 @@ namespace MTDClasses
             side1 = this.Side1;
             side2 = this.Side2;
 
-            // assign side2 to Side1 property
-            // addign side1 to Side2 property
-            this.Side1 = side2;
-            this.Side2 = side1;
+            // assign side 1 to temp
+            // assign side 2 to side 1
+            // addign temp to side 2
+            int temp = side1;
+            side1 = side2;
+            side2 = temp;
         }
 
         // This is how I would have done this in 233N
