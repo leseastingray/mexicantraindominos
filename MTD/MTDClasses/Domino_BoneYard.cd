@@ -3,14 +3,14 @@
   <Class Name="MTDClasses.Domino">
     <Position X="0.75" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAABAAAAAAQAgEgACAAAEAAAAAAIAAAAAAAAAACAA=</HashCode>
+      <HashCode>AAAAABAAAAAQQIgEgACAAAEAAAAAAIAAAAAAAAAACAA=</HashCode>
       <FileName>Domino.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTDClasses.BoneYard" Collapsed="true">
+  <Class Name="MTDClasses.BoneYard">
     <Position X="4" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AABAAAAAAAAAAgAECAAAIAAAAAAAAAAAAAgAAAAAEAA=</HashCode>
       <FileName>BoneYard.cs</FileName>
     </TypeIdentifier>
   </Class>

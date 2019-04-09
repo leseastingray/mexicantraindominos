@@ -23,11 +23,16 @@ namespace MTDClasses
                 }
             }
         }
-        
         public void Shuffle()
         {
+            // random generator
             Random rand = new Random();
 
+            // for each domino in the domino list
+            //   generate a random index number
+            //   create variable to store domino index i
+            //   store random index domino in domino list at i
+            //   assign temp to domino list at random index
             for (int i = 0; i < dlist.Count; i++)
             {
                 int randomIndex = rand.Next(1, dlist.Count);
@@ -39,6 +44,10 @@ namespace MTDClasses
         
         public bool IsEmpty()
         {
+            // if domino list count is equal to 0
+            //     return true
+            // else
+            //     return false
             if (dlist.Count == 0)
             {
                 return true;
@@ -51,6 +60,7 @@ namespace MTDClasses
         
         public int DominosRemaining
         {
+            // return the count of the domino list
             get
             {
                 return dlist.Count;
@@ -59,11 +69,14 @@ namespace MTDClasses
 
         public Domino Draw()
         {
+            // create variable to store index 0 of domino list
+            // remove the above domino from the domino list
+            // return drawn domino
             Domino drawn = dlist[0];
             dlist.Remove(drawn);
             return drawn;
         }
-        // Test and check 
+        // indexer
         public Domino this[int index]
         {
             get
@@ -71,7 +84,7 @@ namespace MTDClasses
                 return dlist[index];
             }
         }
-        
+        // tostring override
         public override string ToString()
         {
             string output = "";

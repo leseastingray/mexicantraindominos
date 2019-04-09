@@ -109,7 +109,7 @@ namespace MTDClasses
             return String.Format("Side 1: {0}  Side 2: {1}", side1, side2);
         }
 
-        // could you overload the == and != operators?
+        // equals method override
         public override bool Equals(object obj)
         {
             if (obj == null)
