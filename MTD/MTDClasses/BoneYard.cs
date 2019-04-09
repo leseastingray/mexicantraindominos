@@ -23,6 +23,10 @@ namespace MTDClasses
                 }
             }
         }
+        /// <summary>
+        /// This method shuffles the dominos in the
+        /// domino list
+        /// </summary>
         public void Shuffle()
         {
             // random generator
