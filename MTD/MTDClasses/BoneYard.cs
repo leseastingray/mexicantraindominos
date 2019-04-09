@@ -45,7 +45,10 @@ namespace MTDClasses
                 dlist[randomIndex] = temp;
             }
         }
-        
+        /// <summary>
+        /// This method
+        /// </summary>
+        /// <returns></returns>
         public bool IsEmpty()
         {
             // if domino list count is equal to 0
