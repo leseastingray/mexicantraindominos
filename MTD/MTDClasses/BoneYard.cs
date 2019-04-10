@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace MTDClasses
 {
+    /// <summary>
+    /// BoneYard is a class describing a deck of Dominos.
+    /// </summary>
     public class BoneYard
     {
         // field declaring and instantiating list of dominos.
         private List<Domino> dlist = new List<Domino>();
         
+        /// <summary>
+        /// Generates BoneYard object given the int of maxDots.
+        /// </summary>
+        /// <param name="maxDots"></param>
         public BoneYard(int maxDots)
         {
             // to fill, loop through side 1
@@ -24,8 +31,8 @@ namespace MTDClasses
             }
         }
         /// <summary>
-        /// This method shuffles the dominos in the
-        /// domino list
+        /// This method shuffles the Dominos in the
+        /// Domino BoneYard
         /// </summary>
         public void Shuffle()
         {
@@ -46,7 +53,7 @@ namespace MTDClasses
             }
         }
         /// <summary>
-        /// This method
+        /// This method returns a bool indicating if the BoneYard is empty.
         /// </summary>
         /// <returns></returns>
         public bool IsEmpty()
@@ -64,7 +71,10 @@ namespace MTDClasses
                 return false;
             }
         }
-        
+        /// <summary>
+        /// This property provides an int describing the number of Dominos left
+        /// in the BoneYard.
+        /// </summary>
         public int DominosRemaining
         {
             // return the count of the domino list
@@ -73,7 +83,10 @@ namespace MTDClasses
                 return dlist.Count;
             }
         }
-
+        /// <summary>
+        /// This removes the Domino at index 0 of the BoneYard.
+        /// </summary>
+        /// <returns></returns>
         public Domino Draw()
         {
             // create variable to store index 0 of domino list
@@ -83,7 +96,11 @@ namespace MTDClasses
             dlist.Remove(drawn);
             return drawn;
         }
-        // indexer
+        /// <summary>
+        /// Indexer for the BoneYard
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public Domino this[int index]
         {
             get
@@ -91,7 +108,10 @@ namespace MTDClasses
                 return dlist[index];
             }
         }
-        // tostring override
+        /// <summary>
+        /// ToString override method.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string output = "";
