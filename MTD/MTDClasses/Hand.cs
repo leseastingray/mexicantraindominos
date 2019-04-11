@@ -11,6 +11,10 @@ namespace MTDClasses
     /// </summary>
     public class Hand
     {
+        /// <summary>
+        /// fields
+        /// </summary>
+        private List<Domino> dominos = new List<Domino>();
         /*
         /// <summary>
         /// The list of dominos in the hand

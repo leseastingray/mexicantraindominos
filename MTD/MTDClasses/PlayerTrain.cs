@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MTDClasses
 {
-    public class PlayerTrain
+    /// <summary>
+    /// Derived class of Train base class.
+    /// </summary>
+    public class PlayerTrain : Train
     {
         /*
         public PlayerTrain(Hand h): base()
@@ -54,6 +57,24 @@ namespace MTDClasses
         /// <returns></returns>
         public override bool IsPlayable(Hand h, Domino d, out bool mustFlip)
         {
+            if (IsOpen || hand == h)
+            {
+                if (base.IsPlayable(d, out mustFlip)
+                {
+                    return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+             }
+             else
+             {
+                mustFlip = false;
+                return false;
+             }
+         }
         }
         */
     }
