@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MTDClasses
 {
+    /// <summary>
+    /// This is a class representing a Domino.
+    /// </summary>
     [Serializable()]
     public class Domino
     {
@@ -13,20 +16,29 @@ namespace MTDClasses
         private int side1;
         private int side2;
 
-        // Default constructor, creates blank (0,0) domino
+        /// <summary>
+        /// Default constructor for a blank (0/0) Domino
+        /// </summary>
         public Domino()
         {
             side1 = 0;
             side2 = 0;
         }
-        // Overloaded constructor
+        /// <summary>
+        /// Overloaded constructor for a Domino given ints
+        /// side1, side2.
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
         public Domino(int p1, int p2)
         {
             side1 = p1;
             side2 = p2;
         }
 
-        // don't use an auto implemented property because of the validation in the setter - p 390
+        /// <summary>
+        /// This property gets or sets Side1 of the Domino.
+        /// </summary>
         public int Side1
         {
             get
@@ -41,7 +53,9 @@ namespace MTDClasses
                     throw new ArgumentException("Domino number of dots must be between 0 and 12.");
             }
         }
-
+        /// <summary>
+        /// This property gets or sets Side2 of the Domino.
+        /// </summary>
         public int Side2
         {
             get
@@ -56,7 +70,9 @@ namespace MTDClasses
                     throw new ArgumentException("Domino number of dots must be between 0 and 12.");
             }
         }
-        // Method to swap sides
+        /// <summary>
+        /// This method flips the sides on the Domino.
+        /// </summary>
         public void Flip()
         {
             // variables to hold value of each side
@@ -71,8 +87,10 @@ namespace MTDClasses
             side2 = temp;
         }
 
-        // This is how I would have done this in 233N
-        // Get only property
+        /// <summary>
+        /// This is a read-only property for the Domino,
+        /// returning an int representing the Domino's score.
+        /// </summary>
         public int Score
         {
             get
@@ -84,7 +102,11 @@ namespace MTDClasses
         // because it's a read only property, I can use the "expression bodied syntax" or a lamdba expression - p 393
         //public int Score => side1 + side2;
 
-        //ditto for the first version of this method and the next one
+        /// <summary>
+        /// This method returns a bool indicating if the Domino
+        /// is a double, ie if side1 is equal to side2.
+        /// </summary>
+        /// <returns></returns>
         public bool IsDouble()
         {
             if (side1 == side2)
@@ -93,7 +115,10 @@ namespace MTDClasses
                 return false;
         }
 
-        // could you do this one using a lambda expression?
+        /// <summary>
+        /// This property returns a string of the name of the
+        /// Domino's image file.
+        /// </summary>
         public string Filename
         {
             get
@@ -103,13 +128,22 @@ namespace MTDClasses
         }
 
         //public bool IsDouble() => (side1 == side2) ? true : false;
-
+        /// <summary>
+        /// This is the override of the ToString method.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return String.Format("Side 1: {0}  Side 2: {1}", side1, side2);
         }
 
-        // equals method override
+        /// <summary>
+        /// This is an override of the Equals method, returning a bool
+        /// telling if the Domino's sides are equal to another Domino
+        /// object given as a parameter.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -123,7 +157,10 @@ namespace MTDClasses
                     return false;
             }      
         }
-
+        /// <summary>
+        /// This is the GetHashCode method returning an int
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return ToString().GetHashCode();
