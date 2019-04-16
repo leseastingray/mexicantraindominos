@@ -9,9 +9,13 @@ namespace MTDClasses
     /// <summary>
     /// Derived class of Train base class.
     /// </summary>
+
     public class PlayerTrain : Train
     {
-        /*
+        /// <summary>
+        /// default constructor
+        /// </summary>
+        /// <param name="h"></param>
         public PlayerTrain(Hand h): base()
         {
         }
@@ -31,6 +35,10 @@ namespace MTDClasses
         /// </summary>
         public bool IsOpen
         {
+            get
+            {
+                return true;
+            }
         }
 
         /// <summary>
@@ -59,23 +67,15 @@ namespace MTDClasses
         {
             if (IsOpen || hand == h)
             {
-                if (base.IsPlayable(d, out mustFlip)
+                if (base.IsPlayable(d, out mustFlip))
                 {
                     return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
                 }
-             }
-             else
-             {
-                mustFlip = false;
-                return false;
-             }
-         }
+                else
+                {
+                    return false;
+                }
+            }
         }
-        */
     }
 }

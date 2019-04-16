@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,10 @@ namespace MTDClasses
     /// <summary>
     /// BoneYard is a class describing a deck of Dominos.
     /// </summary>
-    public class BoneYard
+    public class BoneYard : IEnumerable<Domino>
     {
         // field declaring and instantiating list of dominos.
-        private List<Domino> dlist = new List<Domino>();
+        private List<Domino> dList = new List<Domino>();
         
         /// <summary>
         /// Generates BoneYard object given the int of maxDots.
@@ -26,7 +27,7 @@ namespace MTDClasses
             {
                 for (int side2 = side1; side2 <= maxDots; side2++)
                 {
-                    dlist.Add(new Domino(side1, side2));
+                    dList.Add(new Domino(side1, side2));
                 }
             }
         }
@@ -44,12 +45,12 @@ namespace MTDClasses
             //   create variable to store domino index i
             //   store random index domino in domino list at i
             //   assign temp to domino list at random index
-            for (int i = 0; i < dlist.Count; i++)
+            for (int i = 0; i < dList.Count; i++)
             {
-                int randomIndex = rand.Next(1, dlist.Count);
-                Domino temp = dlist[i];
-                dlist[i] = dlist[randomIndex];
-                dlist[randomIndex] = temp;
+                int randomIndex = rand.Next(1, dList.Count);
+                Domino temp = dList[i];
+                dList[i] = dList[randomIndex];
+                dList[randomIndex] = temp;
             }
         }
         /// <summary>
@@ -62,7 +63,7 @@ namespace MTDClasses
             //     return true
             // else
             //     return false
-            if (dlist.Count == 0)
+            if (dList.Count == 0)
             {
                 return true;
             }
@@ -80,7 +81,7 @@ namespace MTDClasses
             // return the count of the domino list
             get
             {
-                return dlist.Count;
+                return dList.Count;
             }
         }
         /// <summary>
@@ -92,9 +93,16 @@ namespace MTDClasses
             // create variable to store index 0 of domino list
             // remove the above domino from the domino list
             // return drawn domino
-            Domino drawn = dlist[0];
-            dlist.Remove(drawn);
-            return drawn;
+            if (dList.Count != 0)
+            {
+                Domino drawn = dList[0];
+                dList.Remove(drawn);
+                return drawn;
+            }
+            else
+            {
+                return null;
+            }
         }
         /// <summary>
         /// Indexer for the BoneYard
@@ -105,7 +113,7 @@ namespace MTDClasses
         {
             get
             {
-                return dlist[index];
+                return dList[index];
             }
         }
         /// <summary>
@@ -116,11 +124,27 @@ namespace MTDClasses
         {
             string output = "";
 
-            foreach (Domino domino in dlist)
+            foreach (Domino domino in dList)
             {
                 output += domino.ToString() + "/n";
             }
             return output;
+        }
+        /// <summary>
+        /// IEnumerable interface method allowing for foreach loop
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<Domino> GetEnumerator()
+        {
+            foreach (Domino d in dList)
+            {
+                yield return d;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

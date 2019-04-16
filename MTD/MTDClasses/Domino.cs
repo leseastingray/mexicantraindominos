@@ -10,7 +10,7 @@ namespace MTDClasses
     /// This is a class representing a Domino.
     /// </summary>
     [Serializable()]
-    public class Domino
+    public class Domino : IComparable<Domino>
     {
         // instance variables
         private int side1;
@@ -164,6 +164,15 @@ namespace MTDClasses
         public override int GetHashCode()
         {
             return ToString().GetHashCode();
+        }
+        /// <summary>
+        /// CompareTo Interface Method
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(Domino other)
+        {
+            return this.Score.CompareTo(other.Score);
         }
     }
 }

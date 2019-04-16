@@ -15,14 +15,19 @@ namespace MTDClasses
         /// overloaded constructor, takes int engValue as parameter
         /// </summary>
         /// <param name="engValue"></param>
-        public MexicanTrain(int engValue)
+        public MexicanTrain(int engValue) : base(engValue)
         {
-            List<Domino> mxTrain = new List<Domino>(engValue);
         }
-
-        public bool IsPlayable(Hand h, Domino d, out bool mustFlip)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="h"></param>
+        /// <param name="d"></param>
+        /// <param name="mustFlip"></param>
+        /// <returns></returns>
+        public override bool IsPlayable(Hand h, Domino d, out bool mustFlip)
         {
-
+            return base.IsPlayable(d, out mustFlip);
         }
 
     }

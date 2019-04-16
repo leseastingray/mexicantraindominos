@@ -25,7 +25,24 @@ namespace MTDTests
             d21 = new Domino(2, 1);
             d33 = new Domino(3, 3);
         }
-
+        [Test]
+        public void TestCompareTo()
+        {
+            Assert.Greater(d33.CompareTo(d12), 0);
+            Assert.AreEqual(0, d12.CompareTo(d21));
+        }
+        [Test]
+        public void TestSort()
+        {
+            List<Domino> list = new List<Domino>();
+            list.Add(d12);
+            list.Add(def);
+            list.Add(d33);
+            list.Add(d21);
+            Assert.AreEqual(d12, list[0]);
+            list.Sort();
+            Assert.AreEqual(def, list[0]);
+        }
         [Test]
         public void TestSimpleAddition()
         {

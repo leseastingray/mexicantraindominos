@@ -49,7 +49,11 @@ namespace MTDClasses
         {
             get
             {
-                engineValue = 
+                if (dominos.Count != 0)
+                {
+                    engineValue = dominos[0].Side2;
+                }
+                return engineValue;
                     
             }
         }
@@ -143,9 +147,9 @@ namespace MTDClasses
         /// A helper method that determines whether a specific domino can be played on this train.
         /// It can be called in the Mexican and Player train class implementations of the abstract method
         /// </summary>
-        protected bool IsPlayable(Domino d, out bool mustFlip)
+        protected virtual bool IsPlayable(Domino d, out bool mustFlip)
         {
-            if (IsEmpty)
+            if (dominos.Count != 0)
             {
                 if(engineValue == d.Side1)
                 {
@@ -163,9 +167,17 @@ namespace MTDClasses
                     return false;
                 }
             }
+            else
+            {
+                mustFlip = false;
+                return false;
+            }
         }
-
-        // assumes the domino has already been removed from the hand
+        /// <summary>
+        /// Play method
+        /// </summary>
+        /// <param name="h"></param>
+        /// <param name="d"></param>
         public void Play(Hand h, Domino d)
         {
             bool mustFlip = false;
@@ -182,15 +194,18 @@ namespace MTDClasses
                 throw new Exception("Domino" + d.ToString() + " is not playable here.");
             }
         }
-
+        /// <summary>
+        /// ToString
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string output = "";
-            foreach (Domino d in dominos)
+            for (int i = 0; i < dominos.Count; i++)
             {
-                output += d.ToString() + "/n";
+                output += dominos[i].ToString() + "/n";
             }
-        }
-        
+            return output;
+        }      
     }
 }

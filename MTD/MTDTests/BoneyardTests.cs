@@ -30,6 +30,17 @@ namespace MTDTests
         }
 
         [Test]
+        public void TestForeach()
+        {
+            // declared and initialized new BoneYard with max number of 6 dots
+            BoneYard b6 = new BoneYard(6);
+
+            foreach (Domino d in b6)
+            {
+                Console.WriteLine(d);
+            }
+        }
+        [Test]
         public void TestShuffle()
         {
             BoneYard b6 = new BoneYard(6);
