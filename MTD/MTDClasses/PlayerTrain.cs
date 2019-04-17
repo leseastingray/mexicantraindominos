@@ -13,11 +13,17 @@ namespace MTDClasses
     public class PlayerTrain : Train
     {
         /// <summary>
+        /// Field variables
+        /// </summary>
+        private Hand currentHand;
+        private bool open = false;
+        /// <summary>
         /// default constructor
         /// </summary>
         /// <param name="h"></param>
         public PlayerTrain(Hand h): base()
         {
+            currentHand = h;
         }
 
         /// <summary>
@@ -27,6 +33,7 @@ namespace MTDClasses
         /// <param name="engineValue">Represents the first playable value on the train</param>
         public PlayerTrain(Hand h, int engineValue) : base (engineValue)
         {
+            currentHand = h;
         }
 
         /// <summary>
@@ -37,15 +44,26 @@ namespace MTDClasses
         {
             get
             {
-                return true;
+                if (open == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
         /// <summary>
-        /// Open the train
+        /// Opens the train
         /// </summary>
         public void Open()
         {
+            if (open == false)
+            {
+                open = true;
+            }
         }
 
         /// <summary>
@@ -53,6 +71,10 @@ namespace MTDClasses
         /// </summary>
         public void Close()
         {
+            if (open == true)
+            {
+                open = false;
+            }
         }
 
         /// <summary>
@@ -65,17 +87,16 @@ namespace MTDClasses
         /// <returns></returns>
         public override bool IsPlayable(Hand h, Domino d, out bool mustFlip)
         {
-            if (IsOpen || hand == h)
+            if (IsOpen || currentHand == h)
             {
                 if (base.IsPlayable(d, out mustFlip))
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
+            mustFlip = false;
+            return false;
         }
     }
 }

@@ -19,7 +19,9 @@ namespace MTDClasses
         {
         }
         /// <summary>
-        /// 
+        /// method returning a bool representing if the train is
+        /// playable. for MexicanTrain subclass, relevant parameters 
+        /// are the Domino and bool mustFlip
         /// </summary>
         /// <param name="h"></param>
         /// <param name="d"></param>

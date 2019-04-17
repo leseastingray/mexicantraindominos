@@ -49,12 +49,19 @@ namespace MTDClasses
         {
             get
             {
-                if (dominos.Count != 0)
+                // if there are more than 0 dominos
+                //  engineValue is the value of side 2 of
+                //  the first Domino (index 0)
+                // else engineValue remains at -1
+                if (dominos.Count > 0)
                 {
                     engineValue = dominos[0].Side2;
                 }
+                else
+                {
+                    engineValue = -1;
+                }
                 return engineValue;
-                    
             }
         }
         /// <summary>
