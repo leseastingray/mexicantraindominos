@@ -555,9 +555,10 @@ namespace MTDUserInterface
 
         private void PlayMTDRightClick_Load(object sender, EventArgs e)
         {
-            // register the event and it's delegate here
+            // register the BoneYard event and its delegate here
             pack.Empty
                 += new BoneYard.EmptyHandler(RespondToEmpty);
+            // register the Hand event and its delegate here
             userHand.Empty += new Hand.EmptyHandler(RespondToEmptyHand);
         }
 

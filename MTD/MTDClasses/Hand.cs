@@ -12,6 +12,15 @@ namespace MTDClasses
     public class Hand
     {
         /// <summary>
+        /// Delegate with signature of public void Name(Hand)
+        /// </summary>
+        /// <param name="h"></param>
+        public delegate void EmptyHandler(Hand h);
+        /// <summary>
+        /// Event
+        /// </summary>
+        public event EmptyHandler Empty;
+        /// <summary>
         /// The list of dominos in the hand
         /// </summary>
         private List<Domino> handOfDominos;
@@ -60,7 +69,7 @@ namespace MTDClasses
                 handOfDominos.Add(by.Draw());
         }
         /// <summary>
-        /// Adds a DOmino to the Hand
+        /// Adds a Domino to the Hand
         /// </summary>
         /// <param name="d"></param>
         public void Add(Domino d)
@@ -197,7 +206,7 @@ namespace MTDClasses
         {
             handOfDominos.RemoveAt(index);
             if (handOfDominos.Count == 0)
-                IsEmpty(this);
+                Empty(this);
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace MTDClasses
         /// <summary>
         /// fields
         /// </summary>
-        protected List<Domino> dominos;
+        protected List<Domino> dominos = new List<Domino>();
         int engineValue = -1;
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace MTDClasses
         /// </summary>
         protected virtual bool IsPlayable(Domino d, out bool mustFlip)
         {
-            if (dominos.Count != 0)
+            if (!IsEmpty)
             {
                 if(engineValue == d.Side1)
                 {
