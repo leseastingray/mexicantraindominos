@@ -12,6 +12,16 @@ namespace MTDClasses
     /// </summary>
     public class BoneYard : IEnumerable<Domino>
     {
+        /// <summary>
+        /// Delegate with signature of public void Name(BoneYard)
+        /// </summary>
+        /// <param name="by"></param>
+        public delegate void EmptyHandler(BoneYard by);
+        /// <summary>
+        /// Event
+        /// </summary>
+        public event EmptyHandler Empty;
+
         // field declaring and instantiating list of dominos.
         private List<Domino> dList = new List<Domino>();
         
@@ -30,7 +40,17 @@ namespace MTDClasses
                     dList.Add(new Domino(side1, side2));
                 }
             }
+            // 
+            Empty = new EmptyHandler(HandleEmpty);
         }
+        /// <summary>
+        /// HandleEmpty 
+        /// </summary>
+        /// <param name="by"></param>
+        public void HandleEmpty(BoneYard by)
+        {
+        }
+
         /// <summary>
         /// This method shuffles the Dominos in the
         /// Domino BoneYard
@@ -92,16 +112,22 @@ namespace MTDClasses
         {
             // create variable to store index 0 of domino list
             // remove the above domino from the domino list
-            // return drawn domino
             if (dList.Count != 0)
             {
                 Domino drawn = dList[0];
                 dList.Remove(drawn);
+                // if boneyard is now empty
+                //      raise event Empty
+                if (IsEmpty())
+                {
+                    Empty(this);
+                }
+                // return drawn domino
                 return drawn;
             }
             else
             {
-                return null;
+                throw new Exception("BoneYard is empty!");
             }
         }
         /// <summary>

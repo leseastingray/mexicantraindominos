@@ -49,6 +49,7 @@
     <Compile Include="BoneyardTests.cs" />
     <Compile Include="DominoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrainTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
