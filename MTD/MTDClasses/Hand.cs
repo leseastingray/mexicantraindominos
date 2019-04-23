@@ -177,7 +177,7 @@ namespace MTDClasses
         /// <returns>-1 if there isn't a double in the hand</returns>
         public int IndexOfHighDouble()
         {
-            for (int i = 12; i > 0; i--)
+            for (int i = 12; i >= 0; i--)
             {
                 int indexOfHigh = IndexOfDoubleDomino(i);
                 if (indexOfHigh != -1)

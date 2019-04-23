@@ -78,8 +78,9 @@ namespace MTDClasses
         }
 
         /// <summary>
-        /// Can the domino d be played by the hand h on this train?
-        /// If it can be played, must it be flipped to do so?
+        /// IsPlayable for PlayerTrain takes Hand h, Domino d, and mustFlip bool
+        /// as parameters. If PlayerTrain is open and the currentHand is h
+        /// return bool representing if the PlayerTrain is playable
         /// </summary>
         /// <param name="d"></param>
         /// <param name="mustFlip"></param>

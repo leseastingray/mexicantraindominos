@@ -43,7 +43,7 @@ namespace MTDClasses
         }
 
         /// <summary>
-        /// The first domino value that must be played on a train
+        /// The first Domino value that must be played on a Train
         /// </summary>
         public int EngineValue
         {
@@ -65,7 +65,7 @@ namespace MTDClasses
             }
         }
         /// <summary>
-        /// 
+        /// returns a bool representing if the Train is empty
         /// </summary>
         public bool IsEmpty
         {
@@ -82,7 +82,7 @@ namespace MTDClasses
             }    
         }
         /// <summary>
-        /// 
+        /// returns the last Domino in the Train
         /// </summary>
         public Domino LastDomino
         {
@@ -108,13 +108,9 @@ namespace MTDClasses
             get
             {
                 Domino valuedDomino = dominos.Last<Domino>();
-                if (dominos.Count > 1)
+                if (dominos.Count >= 1)
                 {
                     return valuedDomino.Side2;
-                }
-                else if (dominos.Count == 1)
-                {
-                    return engineValue;
                 }
                 else
                 {
@@ -124,7 +120,7 @@ namespace MTDClasses
             }
         }
         /// <summary>
-        /// adds a domino to the Train.
+        /// adds a Domino to the Train.
         /// </summary>
         /// <param name="d"></param>
         public void Add(Domino d)
@@ -156,14 +152,17 @@ namespace MTDClasses
         /// </summary>
         protected virtual bool IsPlayable(Domino d, out bool mustFlip)
         {
-            if (!IsEmpty)
+            Domino lastDomino = dominos.Last<Domino>();
+            int playdotvalue = lastDomino.Side2;
+
+            if (dominos.Count != 0)
             {
-                if(engineValue == d.Side1)
+                if(playdotvalue == d.Side1)
                 {
                     mustFlip = false;
                     return true;
                 }
-                else if (engineValue == d.Side2)
+                else if (playdotvalue == d.Side2)
                 {
                     mustFlip = true;
                     return false;
@@ -181,20 +180,21 @@ namespace MTDClasses
             }
         }
         /// <summary>
-        /// Play method
+        /// Play method, takes and Hand h and Domino d as parameters
+        /// if IsPlayable returns true, will add Domino d to Train
         /// </summary>
         /// <param name="h"></param>
         /// <param name="d"></param>
         public void Play(Hand h, Domino d)
         {
             bool mustFlip = false;
-            if (IsPlayable(h,d, out mustFlip))
+            if (IsPlayable(h, d, out mustFlip))
             {
-                if (mustFlip)
+                if (mustFlip == true)
                 {
                     d.Flip();
                 }
-                Add(d);
+                dominos.Add(d);
             }
             else
             {

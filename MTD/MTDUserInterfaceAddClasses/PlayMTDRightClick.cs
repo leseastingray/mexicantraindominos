@@ -329,6 +329,7 @@ namespace MTDUserInterface
             Domino highestDoubleDomino;
 
             // ToDo: what if neither has a double
+            // Can be fixed for extra credit (logic error results in index out of range)
             if ((userHighest != -1 && computerHighest == -1) ||
                 (userHand[userHighest].Side1 > computerHand[computerHighest].Side1))
             {
