@@ -345,5 +345,39 @@ namespace MTDTests
             // playaHand attempting to play d3 on playaTrain should return true
             Assert.True(playaTrain.IsPlayable(playaHand, d3, out mustFlip));
         }
+        [Test]
+        public void TestMexicanTrainIsPlayable()
+        {
+            // declare and initialize new Boneyard
+            BoneYard b6 = new BoneYard(6);
+            // declare and initialize new Hands
+            Hand playaHand = new Hand(b6, 4);
+            Hand playa2Hand = new Hand(b6, 4);
+            // declare and initialize new Mexican train
+            MexicanTrain mexiTrain = new MexicanTrain(6);
+            // declare and initialize new Dominos
+            Domino d6 = new Domino(5, 3);
+            Domino d7 = new Domino(3, 6);
+            Domino d8 = new Domino(6, 6);
+            Domino d9 = new Domino(6, 1);
+
+            // add d6 and d7 to playaHand
+            playaHand.Add(d6);
+            playaHand.Add(d7);
+            // add d9 to playa2Hand
+            playa2Hand.Add(d9);
+
+            // add d8 to mexiTrain
+            mexiTrain.Add(d8);
+
+            // playaHand attempting to play d6 should return false
+            Assert.False(mexiTrain.IsPlayable(playaHand, d6, out bool mustFlip));
+
+            // playaHand attempting to play d7 should return true
+            Assert.True(mexiTrain.IsPlayable(playaHand, d7, out mustFlip));
+
+            // playa2Hand attempting to play d9 should return true
+            Assert.True(mexiTrain.IsPlayable(playa2Hand, d9, out mustFlip));
+        }
     }
 }
