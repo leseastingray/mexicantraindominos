@@ -67,6 +67,15 @@ namespace MTDClasses
             }
             for (int i = 0; i < numDominos; i++)
                 handOfDominos.Add(by.Draw());
+            Empty = new EmptyHandler(HandleEmpty);
+        }
+        /// <summary>
+        /// HandleEmpty
+        /// </summary>
+        /// <param name="h"></param>
+        public void HandleEmpty(Hand h)
+        {
+
         }
         /// <summary>
         /// Adds a Domino to the Hand
@@ -224,7 +233,7 @@ namespace MTDClasses
             else
             {
                 Domino d = handOfDominos[position];
-                handOfDominos.RemoveAt(position);
+                RemoveAt(position);
                 if (d.Side1 == value)
                     return d;
                 else
@@ -250,7 +259,7 @@ namespace MTDClasses
             else
             {
                 Domino d = handOfDominos[position];
-                handOfDominos.RemoveAt(position);
+                RemoveAt(position);
                 return d;
             }
         }
@@ -279,7 +288,7 @@ namespace MTDClasses
             Domino d = handOfDominos[index];
             if (t.IsPlayable(this, d, out mustFlip))
             {
-                handOfDominos.RemoveAt(index);
+                RemoveAt(index);
                 if (mustFlip)
                     d.Flip();
                 t.Play(this, d);

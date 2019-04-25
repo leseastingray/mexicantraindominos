@@ -165,7 +165,7 @@ namespace MTDClasses
                 else if (playdotvalue == d.Side2)
                 {
                     mustFlip = true;
-                    return false;
+                    return true;
                 }
                 else
                 {

@@ -308,7 +308,36 @@ namespace MTDTests
         }
         // overridden IsPlayable method
         [Test]
-        public void TestPlayerTrainIsPlayable()
+        public void TestPlayerTrainIsPlayableNoFlip()
+        {
+            // declare and initialize new Boneyard
+            BoneYard b6 = new BoneYard(6);
+            // declare and initialize new Hand
+            Hand playaHand = new Hand(b6, 4);
+
+            // declare and initialize new Player train
+            PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
+
+            // declare and initialize new Dominos
+            Domino d1 = new Domino(1, 1);
+            Domino d2 = new Domino(2, 2);
+            Domino d3 = new Domino(3, 0);
+            Domino d4 = new Domino(1, 3);
+            Domino d5 = new Domino(3, 3);
+
+            // add d1, d2, and d3 to playaHand
+            playaHand.Add(d1);
+            playaHand.Add(d2);
+            playaHand.Add(d3);
+
+            // add d5 to playaTrain
+            playaTrain.Add(d5);
+
+            // playaHand attempting to play d3 on playaTrain should return true
+            Assert.True(playaTrain.IsPlayable(playaHand, d3, out bool mustFlip));
+        }
+        [Test]
+        public void TestPlayerTrainIsPlayableBasic()
         {
             // declare and initialize new Boneyard
             BoneYard b6 = new BoneYard(6);
@@ -346,7 +375,62 @@ namespace MTDTests
             Assert.True(playaTrain.IsPlayable(playaHand, d3, out mustFlip));
         }
         [Test]
-        public void TestMexicanTrainIsPlayable()
+        public void TestPlayerTrainIsPlayableFlip()
+        {
+            // declare and initialize new Boneyard
+            BoneYard b6 = new BoneYard(6);
+            // declare and initialize new Hand
+            Hand playa2Hand = new Hand(b6, 4);
+            // declare and initialize new Player train
+            PlayerTrain playa2Train = new PlayerTrain(playa2Hand, 6);
+            // declare and initialize new Dominos
+            Domino d5 = new Domino(3, 3);
+            Domino d6 = new Domino(5, 3);
+
+            // add d6 to playa2Hand
+            playa2Hand.Add(d6);
+
+            // add d5 to playa2Train
+            playa2Train.Add(d5);
+
+            // playa2Hand attempting to play on playa2Train should return true
+            Assert.True(playa2Train.IsPlayable(playa2Hand, d6, out bool mustFlip));
+
+        }
+        [Test]
+        public void TestMexicanTrainIsPlayableNoFlip()
+        {
+            // declare and initialize new Boneyard
+            BoneYard b6 = new BoneYard(6);
+            // declare and initialize new Hands
+            Hand playaHand = new Hand(b6, 4);
+            Hand playa2Hand = new Hand(b6, 4);
+            // declare and initialize new Mexican train
+            MexicanTrain mexiTrain = new MexicanTrain(6);
+            // declare and initialize new Dominos
+            Domino d6 = new Domino(5, 3);
+            Domino d7 = new Domino(3, 6);
+            Domino d8 = new Domino(6, 6);
+            Domino d9 = new Domino(6, 1);
+            Domino d10 = new Domino(6, 3);
+
+            // add d10 to playaHand
+            playaHand.Add(d10);
+            // add d9 to playa2Hand
+            playa2Hand.Add(d9);
+
+            // add d8 to mexiTrain
+            mexiTrain.Add(d8);
+
+            // playa2Hand attempting to play d9 should return true
+            Assert.True(mexiTrain.IsPlayable(playa2Hand, d9, out bool mustFlip));
+
+            // playaHand attempting to play d10 should return true
+            Assert.True(mexiTrain.IsPlayable(playaHand, d10, out mustFlip));
+        }
+
+        [Test]
+        public void TestMexicanTrainIsPlayableFlip()
         {
             // declare and initialize new Boneyard
             BoneYard b6 = new BoneYard(6);
@@ -370,14 +454,41 @@ namespace MTDTests
             // add d8 to mexiTrain
             mexiTrain.Add(d8);
 
-            // playaHand attempting to play d6 should return false
-            Assert.False(mexiTrain.IsPlayable(playaHand, d6, out bool mustFlip));
-
             // playaHand attempting to play d7 should return true
-            Assert.True(mexiTrain.IsPlayable(playaHand, d7, out mustFlip));
+            Assert.True(mexiTrain.IsPlayable(playaHand, d7, out bool mustFlip));
+        }
+
+        [Test]
+        public void TestMexicanTrainIsPlayableBasic()
+        {
+            // declare and initialize new Boneyard
+            BoneYard b6 = new BoneYard(6);
+            // declare and initialize new Hands
+            Hand playaHand = new Hand(b6, 4);
+            Hand playa2Hand = new Hand(b6, 4);
+            // declare and initialize new Mexican train
+            MexicanTrain mexiTrain = new MexicanTrain(6);
+            // declare and initialize new Dominos
+            Domino d6 = new Domino(5, 3);
+            Domino d7 = new Domino(3, 6);
+            Domino d8 = new Domino(6, 6);
+            Domino d9 = new Domino(6, 1);
+            Domino d10 = new Domino(6, 3);
+
+            // add d9 to playa2Hand
+            playa2Hand.Add(d9);
+
+            // add d6 and d7 to playaHand
+            playaHand.Add(d6);
+
+            // add d8 to mexiTrain
+            mexiTrain.Add(d8);
 
             // playa2Hand attempting to play d9 should return true
-            Assert.True(mexiTrain.IsPlayable(playa2Hand, d9, out mustFlip));
+            Assert.True(mexiTrain.IsPlayable(playa2Hand, d9, out bool mustFlip));
+
+            // playaHand attempting to play d6 should return false
+            Assert.False(mexiTrain.IsPlayable(playaHand, d6, out mustFlip));
         }
     }
 }
