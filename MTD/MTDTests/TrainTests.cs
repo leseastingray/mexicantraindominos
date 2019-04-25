@@ -73,26 +73,19 @@ namespace MTDTests
             BoneYard b6 = new BoneYard(6);
             // declare and initialize new Hand
             Hand playaHand = new Hand(b6, 4);
-            // declare and initialize new Mexican train
+            // declare and initialize new Mexican trains
             MexicanTrain mexiTrain = new MexicanTrain(6);
+            MexicanTrain mexi2Train = new MexicanTrain(4);
             // declare and initialize new Player train
             PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
-            // declare and initialize new Dominos
-            Domino d1 = new Domino(1, 1);
-            Domino d2 = new Domino(2, 2);
-            Domino d3 = new Domino(3, 0);
 
-            // add d1 and d3 to playaTrain
-            playaTrain.Add(d1);
-            playaTrain.Add(d3);
 
-            // engine value of playaTrain should be equal to 1
-            Assert.AreEqual(playaTrain.EngineValue, 1);
-
-            // add d2 to mexiTrain
-            mexiTrain.Add(d2);
-            // engine value of mexiTrain should be equal to 2
+            // engine value of mexiTrain should be equal to 6
             Assert.AreEqual(mexiTrain.EngineValue, 2);
+
+            // engine value of mexi2Train should be equal to 4
+            Assert.AreEqual(mexi2Train.EngineValue, 4);
+
         }
 
         [Test]

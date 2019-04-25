@@ -14,7 +14,8 @@ namespace MTDClasses
         /// fields
         /// </summary>
         protected List<Domino> dominos = new List<Domino>();
-        int engineValue = -1;
+        Domino highestDoubleDomino;
+        int engValue = -1;
 
         /// <summary>
         /// default constructor
@@ -49,18 +50,7 @@ namespace MTDClasses
         {
             get
             {
-                // if there are more than 0 dominos
-                //  engineValue is the value of side 2 of
-                //  the first Domino (index 0)
-                // else engineValue remains at -1
-                if (dominos.Count > 0)
-                {
-                    engineValue = dominos[0].Side2;
-                }
-                else
-                {
-                    engineValue = -1;
-                }
+                int engineValue = highestDoubleDomino.Side2;
                 return engineValue;
             }
         }
@@ -88,7 +78,7 @@ namespace MTDClasses
         {
             get
             {
-                if (dominos.Count != 0)
+                if (dominos.Count > 0)
                 {
                     Domino lastDomino = dominos.Last<Domino>();
                     return lastDomino;
@@ -107,7 +97,7 @@ namespace MTDClasses
         {
             get
             {
-                Domino valuedDomino = dominos.Last<Domino>();
+                Domino valuedDomino = dominos.Last();
                 if (dominos.Count >= 1)
                 {
                     return valuedDomino.Side2;
@@ -152,12 +142,12 @@ namespace MTDClasses
         /// </summary>
         protected virtual bool IsPlayable(Domino d, out bool mustFlip)
         {
-            Domino lastDomino = dominos.Last<Domino>();
-            int playdotvalue = lastDomino.Side2;
-
             if (dominos.Count != 0)
             {
-                if(playdotvalue == d.Side1)
+                Domino lastDomino = dominos.Last();
+                int playdotvalue = lastDomino.Side2;
+
+                if (playdotvalue == d.Side1)
                 {
                     mustFlip = false;
                     return true;
@@ -171,6 +161,24 @@ namespace MTDClasses
                 {
                     mustFlip = false;
                     return false;
+                }
+            }
+            else if (dominos.Count == 0)
+            {
+                if (engValue == d.Side1)
+                {
+                    mustFlip = false;
+                    return true;
+                }
+                if (engValue == d.Side2)
+                {
+                    mustFlip = true;
+                    return true;
+                }
+                else
+                {
+                    mustFlip = false;
+                    return true;
                 }
             }
             else
