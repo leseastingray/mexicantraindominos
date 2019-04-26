@@ -44,7 +44,7 @@ namespace MTDTests
             // declare and initialize new Hand
             Hand playaHand = new Hand(b6, 4);
             // declare and initialize new Mexican train
-            MexicanTrain mexiTrain = new MexicanTrain(6);
+            MexicanTrain mexiTrain = new MexicanTrain(1);
             // declare and initialize new Player train
             PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
             // declare and initialize new Dominos
@@ -81,11 +81,10 @@ namespace MTDTests
 
 
             // engine value of mexiTrain should be equal to 6
-            Assert.AreEqual(mexiTrain.EngineValue, 2);
+            Assert.AreEqual(mexiTrain.EngineValue, 6);
 
             // engine value of mexi2Train should be equal to 4
             Assert.AreEqual(mexi2Train.EngineValue, 4);
-
         }
 
         [Test]
@@ -96,9 +95,9 @@ namespace MTDTests
             // declare and initialize new Hand
             Hand playaHand = new Hand(b6, 4);
             // declare and initialize new Mexican train
-            MexicanTrain mexiTrain = new MexicanTrain(6);
+            MexicanTrain mexiTrain = new MexicanTrain(1);
             // declare and initialize new Player train
-            PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
+            PlayerTrain playaTrain = new PlayerTrain(playaHand, 2);
             // declare and initialize new Dominos
             Domino d1 = new Domino(1, 1);
             Domino d2 = new Domino(2, 2);
@@ -125,7 +124,7 @@ namespace MTDTests
             // declare and initialize new Hand
             Hand playaHand = new Hand(b6, 4);
             // declare and initialize new Mexican train
-            MexicanTrain mexiTrain = new MexicanTrain(6);
+            MexicanTrain mexiTrain = new MexicanTrain(3);
             // declare and initialize new Player train
             PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
             // declare and initialize new Dominos
@@ -152,19 +151,18 @@ namespace MTDTests
             // declare and initialize new Hand
             Hand playaHand = new Hand(b6, 4);
             // declare and initialize new Mexican train
-            MexicanTrain mexiTrain = new MexicanTrain(6);
+            MexicanTrain mexiTrain = new MexicanTrain(2);
             // declare and initialize new Player train
-            PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
+            PlayerTrain playaTrain = new PlayerTrain(playaHand, 3);
             // declare and initialize new Dominos
             Domino d1 = new Domino(1, 1);
             Domino d2 = new Domino(2, 2);
             Domino d3 = new Domino(3, 0);
 
             mexiTrain.Add(d2);
-            // mexiTrain playable value should be equal to 2 (side 2 of d1)
+            // mexiTrain playable value should be equal to 2 (engineValue)
             Assert.AreEqual(mexiTrain.PlayableValue, 2);
 
-            playaTrain.Add(d1);
             playaTrain.Add(d3);
             // playaTrain playable value should be equal to 0 (side 2 of d3)
             Assert.AreEqual(playaTrain.PlayableValue, 0);
@@ -206,9 +204,9 @@ namespace MTDTests
             // declare and initialize new Hand
             Hand playaHand = new Hand(b6, 4);
             // declare and initialize new Mexican train
-            MexicanTrain mexiTrain = new MexicanTrain(6);
+            MexicanTrain mexiTrain = new MexicanTrain(1);
             // declare and initialize new Player train
-            PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
+            PlayerTrain playaTrain = new PlayerTrain(playaHand, 3);
             // declare and initialize new Dominos
             Domino d1 = new Domino(1, 1);
             Domino d2 = new Domino(2, 2);
@@ -247,16 +245,16 @@ namespace MTDTests
             // declare and initialize new Hand
             Hand playaHand = new Hand(b6, 4);
             // declare and initialize new Player train
-            PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
+            PlayerTrain playaTrain = new PlayerTrain(playaHand, 1);
             // declare and initialize new Dominos
             Domino d1 = new Domino(1, 1);
-            Domino d2 = new Domino(2, 2);
+            Domino d4 = new Domino(1, 3);
 
             // playaTrain should return false (default) for IsOpen
             Assert.False(playaTrain.IsOpen);
 
             playaTrain.Add(d1);
-            playaTrain.Add(d2);
+            playaTrain.Add(d4);
 
             // playaTrain still return false (default) for IsOpen
             Assert.False(playaTrain.IsOpen);
@@ -276,16 +274,16 @@ namespace MTDTests
             // declare and initialize new Hand
             Hand playaHand = new Hand(b6, 4);
             // declare and initialize new Player train
-            PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
+            PlayerTrain playaTrain = new PlayerTrain(playaHand, 1);
             // declare and initialize new Dominos
             Domino d1 = new Domino(1, 1);
-            Domino d2 = new Domino(2, 2);
+            Domino d4 = new Domino(1, 3);
 
             // playaTrain should return false (default) for IsOpen
             Assert.False(playaTrain.IsOpen);
 
             playaTrain.Add(d1);
-            playaTrain.Add(d2);
+            playaTrain.Add(d4);
 
             // open playaTrain
             playaTrain.Open();
@@ -309,7 +307,7 @@ namespace MTDTests
             Hand playaHand = new Hand(b6, 4);
 
             // declare and initialize new Player train
-            PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
+            PlayerTrain playaTrain = new PlayerTrain(playaHand, 3);
 
             // declare and initialize new Dominos
             Domino d1 = new Domino(1, 1);
@@ -338,8 +336,8 @@ namespace MTDTests
             Hand playaHand = new Hand(b6, 4);
             Hand playa2Hand = new Hand(b6, 4);
             // declare and initialize new Player trains
-            PlayerTrain playaTrain = new PlayerTrain(playaHand, 6);
-            PlayerTrain playa2Train = new PlayerTrain(playa2Hand, 6);
+            PlayerTrain playaTrain = new PlayerTrain(playaHand, 3);
+            PlayerTrain playa2Train = new PlayerTrain(playa2Hand, 3);
             // declare and initialize new Dominos
             Domino d1 = new Domino(1, 1);
             Domino d2 = new Domino(2, 2);
@@ -375,7 +373,7 @@ namespace MTDTests
             // declare and initialize new Hand
             Hand playa2Hand = new Hand(b6, 4);
             // declare and initialize new Player train
-            PlayerTrain playa2Train = new PlayerTrain(playa2Hand, 6);
+            PlayerTrain playa2Train = new PlayerTrain(playa2Hand, 3);
             // declare and initialize new Dominos
             Domino d5 = new Domino(3, 3);
             Domino d6 = new Domino(5, 3);

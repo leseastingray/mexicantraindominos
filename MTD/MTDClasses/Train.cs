@@ -11,11 +11,13 @@ namespace MTDClasses
     public abstract class Train
     {
         /// <summary>
-        /// fields
+        /// field for train of dominos
         /// </summary>
         protected List<Domino> dominos = new List<Domino>();
-        Domino highestDoubleDomino;
-        int engValue = -1;
+        /// <summary>
+        /// field for engine value of train
+        /// </summary>
+        protected int engValue = -1;
 
         /// <summary>
         /// default constructor
@@ -27,10 +29,12 @@ namespace MTDClasses
         /// <summary>
         /// overloaded constructor, takes int engValue as parameter
         /// </summary>
-        /// <param name="engValue"></param>
-        public Train(int engValue)
+        /// <param name="engineValue"></param>
+        public Train(int engineValue)
         {
-            List<Domino> dominos = new List<Domino>(engValue);
+            List<Domino> dominos = new List<Domino>(engineValue);
+            engValue = engineValue;
+
         }
         /// <summary>
         /// returns int representing the number of Dominos in the Train
@@ -50,8 +54,7 @@ namespace MTDClasses
         {
             get
             {
-                int engineValue = highestDoubleDomino.Side2;
-                return engineValue;
+                return engValue;
             }
         }
         /// <summary>
@@ -97,10 +100,14 @@ namespace MTDClasses
         {
             get
             {
-                Domino valuedDomino = dominos.Last();
+                Domino valuedDomino = dominos.Last<Domino>();
                 if (dominos.Count >= 1)
                 {
                     return valuedDomino.Side2;
+                }
+                else if (dominos.Count == 0)
+                {
+                    return engValue;
                 }
                 else
                 {
