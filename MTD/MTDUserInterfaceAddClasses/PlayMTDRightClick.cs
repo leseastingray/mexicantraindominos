@@ -13,24 +13,29 @@ namespace MTDUserInterface
 {
     public partial class PlayMTDRightClick : Form
     {
-
+        // boneyard instance variable
         private BoneYard pack;
 
+        // user instance variables, hand + train and pic box lists
         private Hand userHand;
         private List<PictureBox> userHandPBs;
         private PlayerTrain userTrain;
         private List<PictureBox> userTrainPBs;
 
+        // computer instance variables, hand + train and pic box list
         private Hand computerHand;
         private PlayerTrain computerTrain;
         private List<PictureBox> computerTrainPBs;
 
+        // Mexican train
         private MexicanTrain mexicanTrain;
         private List<PictureBox> mexicanTrainPBs;
 
+        // playing domino instance variables
         private Domino userDominoInPlay;
         private int indexOfDominoInPlay = -1;
 
+        // turn-based instance variables
         private int nextDrawIndex = 0;
 
         private int whosTurn = -1;
@@ -553,7 +558,7 @@ namespace MTDUserInterface
             if (whosTurn != -1)
                 EnableUserMove();
         }
-
+        // event handler and delegate registration
         private void PlayMTDRightClick_Load(object sender, EventArgs e)
         {
             // register the BoneYard event and its delegate here
@@ -567,7 +572,7 @@ namespace MTDUserInterface
         {
             MessageBox.Show("The Boneyard must be empty");
         }
-
+        // if there is an empty hand, given the hand h parameter
         private void RespondToEmptyHand(Hand h)
         {
             if (h == userHand)
